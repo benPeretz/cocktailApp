@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loginFragment"
+    android:background="@drawable/background2"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="_______SIGN-IN_______"
+        android:layout_marginTop="180dp"
+        android:textSize="24sp"
+        android:gravity="center"/>
+
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="Email"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="20dp"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/white"
+        android:minHeight="48dp"
+        />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:layout_margin="10dp"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="20dp"
+        />
+
+
+</LinearLayout>

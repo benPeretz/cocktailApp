@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".entryFragment"
+    android:orientation="vertical"
+    android:background="@drawable/background1" >
+
+    <ImageView
+        android:layout_width="349dp"
+        android:layout_height="287dp"
+        android:src="@drawable/logo1"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/button_cocktail_EF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:alpha="0.8"
+        android:background="@drawable/button_home_page"
+        android:fontFamily="serif"
+        android:text="cocktails"
+        android:textColor="#F46335"
+
+
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button_signUp_EF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:alpha="0.8"
+        android:background="@drawable/button_home_page"
+        android:fontFamily="serif"
+        android:text="sign-up"
+        android:textColor="#EDBA3B"
+
+
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button_signIn_EF"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:alpha="0.8"
+        android:background="@drawable/button_home_page"
+        android:fontFamily="serif"
+        android:text="sign-in"
+        android:textColor="#F3ECDD"
+
+
+        android:textSize="24sp" />
+</LinearLayout>
