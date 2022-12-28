@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "9839788899",
+    "project_id": "lux-cocktail",
+    "storage_bucket": "lux-cocktail.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9839788899:android:86eaa1640087cbe4990956",
+        "android_client_info": {
+          "package_name": "com.example.cocktailbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9839788899-niiirjpg5nlrlp40gh7efledm29iote1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEdZ-pIOojxyXjE3MtCp7RDejqpvH916g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9839788899-niiirjpg5nlrlp40gh7efledm29iote1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
