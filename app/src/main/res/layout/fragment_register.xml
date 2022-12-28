@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".registerFragment"
-    android:background="@drawable/background2"
+    android:background="@drawable/background3"
     android:orientation="vertical"
 
     >
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="250dp"
         android:layout_marginRight="10dp"
         android:ems="10"
         android:hint="Email"
@@ -91,6 +91,6 @@
         android:background="@drawable/button_home_page"
         android:fontFamily="sans-serif-smallcaps"
         android:text="create your account"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

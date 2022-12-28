@@ -21,8 +21,10 @@ public class entryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_entry, container, false);
 
+        MainActivity mainActivity= (MainActivity) getActivity();
         Button btn_to_Login_page=view.findViewById(R.id.button_signIn_EF);
         Button btn_to_signup_page=view.findViewById(R.id.button_signUp_EF);
+        Button btn_to_app_guestMode=view.findViewById(R.id.button_cocktail_EF);
 
 
 
@@ -41,6 +43,14 @@ public class entryFragment extends Fragment {
             }
         });
 
+        btn_to_app_guestMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.moveToSecActivity();
+            }
+        });
+
+
     return view;
     }
-}
+}//
