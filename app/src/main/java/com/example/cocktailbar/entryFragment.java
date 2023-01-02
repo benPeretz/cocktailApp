@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 
 public class entryFragment extends Fragment {
 
@@ -55,3 +58,19 @@ public class entryFragment extends Fragment {
     return view;
     }
 }//
+
+
+/*
+    JsonObject obj=rootobj.getAsJsonObject();
+
+    JsonElement drinks =obj.get("drinks");
+            if(drinks!=null){
+
+                    JsonArray drinksArray=drinks.getAsJsonArray();
+                    //JsonElement d=drinksArray.get(1).getAsJsonObject().get("strDrink");
+                    for (JsonElement j:drinksArray){
+                    JsonObject drink=j.getAsJsonObject();
+                    JsonElement strDrink = drink.get("strDrink");
+                    JsonElement strCategory = drink.get("strCategory");
+
+ */

@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import com.example.cocktailbar.databinding.ActivityMain2Binding;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity  {
 
     ActivityMain2Binding binding;
 
@@ -54,13 +54,15 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment){
+    public void replaceFragment(Fragment fragment){
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayoutContainer,fragment);
         fragmentTransaction.commit();
     }
+
+
     /*public void replaceFragment(Fragment fragment,Bundle bundle){
 
         FragmentManager fragmentManager=getSupportFragmentManager();
