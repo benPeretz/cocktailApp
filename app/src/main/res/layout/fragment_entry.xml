@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".entryFragment"
@@ -14,58 +15,67 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp" />
 
-    <Button
-        android:id="@+id/button_cocktail_EF"
-        android:layout_width="match_parent"
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:icon="@drawable/ic_baseline_wine_bar_24"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="40dp"
-        android:alpha="0.8"
-        android:background="@drawable/button_home_page"
-        android:fontFamily="serif"
-        android:text="cocktails"
-        android:textColor="@color/white"
-        android:drawableStart="@drawable/ic_baseline_wine_bar_24"
+        android:layout_width="match_parent"
         android:padding="10dp"
-
-
-
-
-
-
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/button_signUp_EF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginTop="35dp"
-        android:layout_marginRight="40dp"
-        android:alpha="0.8"
-        android:background="@drawable/button_home_page"
-        android:fontFamily="serif"
-        android:text="sign-up"
-        android:textColor="@color/white"
+        app:strokeColor="@color/white"
+        app:cornerRadius="30dp"
+        android:id="@+id/button_cocktail_EF"
+        android:text="Cocktails"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:iconGravity="textStart"
+        app:iconTint="@color/teal_700"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"/>
 
-
-        android:textSize="20sp" />
-
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:icon="@drawable/ic_baseline_login_24"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="35dp"
+        app:strokeColor="@color/white"
+        app:cornerRadius="30dp"
         android:id="@+id/button_signIn_EF"
+        android:text="Log-In"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:iconGravity="textStart"
+        app:iconTint="@color/teal_700"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"/>
 
-        android:layout_width="match_parent"
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:icon="@drawable/ic_baseline_account_circle_24"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginTop="35dp"
-        android:layout_marginRight="40dp"
-        android:alpha="0.8"
-        android:background="@drawable/button_home_page"
-        android:fontFamily="serif"
-        android:text="sign-in"
-        android:textColor="#F3ECDD"
+        app:strokeColor="@color/white"
+        app:cornerRadius="30dp"
+        android:id="@+id/button_signUp_EF"
+        android:text="Create account"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:iconGravity="textStart"
+        app:iconTint="@color/teal_700"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"/>
 
-
-        android:textSize="20sp" />
 </LinearLayout>

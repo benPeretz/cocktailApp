@@ -1,6 +1,7 @@
 package com.example.cocktailbar;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -20,7 +21,6 @@ public class DataSevice {
     private Cocktail cocktailDetail;
 
     public ArrayList<Cocktail> getArrCocktail(){
-
         String sURL="https://www.thecocktaildb.com/api/json/v1/1/search.php?s";
         URL url=null;
 
