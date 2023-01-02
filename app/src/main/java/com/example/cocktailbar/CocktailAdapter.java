@@ -1,5 +1,6 @@
 package com.example.cocktailbar;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,22 +19,22 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
     private ArrayList<Cocktail>dataSet;
 
-    //private final recyclerViewInterface recyclerVI;
+    private  recyclerViewInterface recyclerVI;
 
-    //public CocktailAdapter(ArrayList<Cocktail>dataSet,recyclerViewInterface recyclerVI){
-    public CocktailAdapter(ArrayList<Cocktail>dataSet){
+    public CocktailAdapter(ArrayList<Cocktail>dataSet,recyclerViewInterface recyclerVI){
+    //public CocktailAdapter(ArrayList<Cocktail>dataSet){
         this.dataSet=dataSet;
-        //this.recyclerVI=recyclerVI;
+        this.recyclerVI=recyclerVI;
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView textViewName;
         TextView textViewCategory;
         ImageView imageViewCocktail;
 
-        //public MyViewHolder(View itemView,recyclerViewInterface recyclerVI){
-        public MyViewHolder(View itemView){
+        public MyViewHolder(View itemView,recyclerViewInterface recyclerVI){
+        //public MyViewHolder(View itemView){
             super(itemView);
 
             cardView=itemView.findViewById(R.id.card_view);
@@ -51,7 +52,9 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
                         }
                     }
                 }
-            });*/
+            });
+
+ */
         }
 
     }
@@ -62,8 +65,8 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
         //View view = LayoutInflater.from(context).inflate(R.layout.card_layout, parent ,false);
         View view = LayoutInflater.from(parent.getContext() ).inflate(R.layout.card_home_fragment_layout, parent ,false);
 
-        //MyViewHolder myViewHolder = new MyViewHolder(view,recyclerVI);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view,recyclerVI);
+        //MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
 
@@ -71,7 +74,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         TextView textViewName =holder.textViewName;
         TextView textViewNativeName=holder.textViewCategory;
@@ -79,9 +82,19 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
 
 
+
         textViewName.setText(dataSet.get(position).getStrDrink().replace("\"",""));
         textViewNativeName.setText(dataSet.get(position).getStrCategory().replace("\"",""));
         Glide.with(holder.itemView.getContext()).load(dataSet.get(position).getPhoto()).circleCrop().error(R.drawable.ic_launcher_background).into(imageViewF);
+          
+        
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerVI.onItemClick(position);
+            }
+        });  
+
     }
 
 

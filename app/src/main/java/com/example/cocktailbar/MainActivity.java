@@ -103,10 +103,10 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
                         if (task.isSuccessful()) {
 
                             Toast.makeText(MainActivity.this, "login successful",Toast.LENGTH_LONG).show();
-                            //Navigation.findNavController().navigate(R.id.action_loginFragment_to_mainActivity2);
+                            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainActivity2);
 
-                            Intent intent=new Intent(MainActivity.this,MainActivity2.class);
-                            startActivity(intent);
+                           // Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+                            //startActivity(intent);
 
 
 
