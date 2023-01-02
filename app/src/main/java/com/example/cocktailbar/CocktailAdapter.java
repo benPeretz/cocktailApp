@@ -79,11 +79,9 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
 
 
-        textViewName.setText(dataSet.get(position).getStrCategory());
-        textViewNativeName.setText(dataSet.get(position).getStrDrink());
-
-        Glide.with(holder.itemView.getContext()).load(dataSet.get(position).getPhoto()).error(R.drawable.ic_launcher_background).into(imageViewF);
-
+        textViewName.setText(dataSet.get(position).getStrDrink().replace("\"",""));
+        textViewNativeName.setText(dataSet.get(position).getStrCategory().replace("\"",""));
+        Glide.with(holder.itemView.getContext()).load(dataSet.get(position).getPhoto()).circleCrop().error(R.drawable.ic_launcher_background).into(imageViewF);
     }
 
 
