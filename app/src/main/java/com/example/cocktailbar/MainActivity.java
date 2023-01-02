@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,7 +102,9 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(MainActivity.this, "login failed",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "login successful",Toast.LENGTH_LONG).show();
+                            //Navigation.findNavController().navigate(R.id.action_loginFragment_to_mainActivity2);
+
                             Intent intent=new Intent(MainActivity.this,MainActivity2.class);
                             startActivity(intent);
 

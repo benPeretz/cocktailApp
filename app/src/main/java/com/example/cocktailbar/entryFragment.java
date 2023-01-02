@@ -46,7 +46,8 @@ public class entryFragment extends Fragment {
         btn_to_app_guestMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.moveToSecActivity();
+                //mainActivity.moveToSecActivity();
+                Navigation.findNavController(view).navigate(R.id.action_entryFragment_to_mainActivity2);
             }
         });
 

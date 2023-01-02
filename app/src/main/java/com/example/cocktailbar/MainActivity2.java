@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.example.cocktailbar.databinding.ActivityMain2Binding;
@@ -13,6 +14,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     ActivityMain2Binding binding;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,4 +61,13 @@ public class MainActivity2 extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayoutContainer,fragment);
         fragmentTransaction.commit();
     }
+    /*public void replaceFragment(Fragment fragment,Bundle bundle){
+
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayoutContainer,fragment);
+        fragmentTransaction.commit();
+    }
+
+     */
 }

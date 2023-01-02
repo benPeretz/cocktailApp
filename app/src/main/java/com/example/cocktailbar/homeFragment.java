@@ -15,19 +15,21 @@ import java.util.ArrayList;
 
 
 public class homeFragment extends Fragment {
-
+    View view;
+    ArrayList<Cocktail> arr;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
+         view= inflater.inflate(R.layout.fragment_home, container, false);
 
         DataSevice ds=new DataSevice();
-        ArrayList<Cocktail> arr= ds.getArrCocktail();
+         arr= ds.getArrCocktail();
 
         CocktailAdapter cocktailAdapter=new CocktailAdapter(arr);
+        //CocktailAdapter cocktailAdapter=new CocktailAdapter(arr, (recyclerViewInterface) this);
 
         RecyclerView recyclerView=view.findViewById(R.id.recyclerView);
 
@@ -41,4 +43,17 @@ public class homeFragment extends Fragment {
         return view;
 
     }
+    /*
+    public void onItemClick(int position) {
+
+        Bundle bundle =new Bundle();
+        bundle.putString("in",arr.get(position).getStrDrink());
+        MainActivity2 mainActivity2= (MainActivity2) getActivity();
+        mainActivity2.replaceFragment(new cocktailDetailFragment());
+
+
+
+    }
+
+     */
 }

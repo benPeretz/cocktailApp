@@ -18,9 +18,12 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
     private ArrayList<Cocktail>dataSet;
 
+    //private final recyclerViewInterface recyclerVI;
 
+    //public CocktailAdapter(ArrayList<Cocktail>dataSet,recyclerViewInterface recyclerVI){
     public CocktailAdapter(ArrayList<Cocktail>dataSet){
         this.dataSet=dataSet;
+        //this.recyclerVI=recyclerVI;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -29,6 +32,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
         TextView textViewCategory;
         ImageView imageViewCocktail;
 
+        //public MyViewHolder(View itemView,recyclerViewInterface recyclerVI){
         public MyViewHolder(View itemView){
             super(itemView);
 
@@ -36,7 +40,18 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
             textViewName=itemView.findViewById(R.id.cocktail_name);
             textViewCategory=itemView.findViewById(R.id.cocktail_category);
             imageViewCocktail=itemView.findViewById(R.id.cocktail_image);
-
+/*
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerVI!=null){
+                        int pos=getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            recyclerVI.onItemClick(pos);
+                        }
+                    }
+                }
+            });*/
         }
 
     }
@@ -47,6 +62,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
         //View view = LayoutInflater.from(context).inflate(R.layout.card_layout, parent ,false);
         View view = LayoutInflater.from(parent.getContext() ).inflate(R.layout.card_home_fragment_layout, parent ,false);
 
+        //MyViewHolder myViewHolder = new MyViewHolder(view,recyclerVI);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
