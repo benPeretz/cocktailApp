@@ -3,7 +3,6 @@ package com.example.cocktailbar;
 public class Person {
 
     public String email;
-
     public String phon;
     public String firstName;
     public String lastName;
@@ -13,5 +12,8 @@ public class Person {
         this.phon = phon;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+    public Person(){
+
     }
 }

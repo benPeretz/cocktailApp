@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:id="@+id/first_name_text_profile_settings"
         android:hint="First Name"
         android:textSize="20sp"/>
@@ -38,6 +39,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:id="@+id/last_name_text_profile_settings"
         android:hint="Last Name"
@@ -52,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:id="@+id/phone_number_text_profile_settings"
         android:inputType="phone"
         android:hint="Phone Number"
@@ -66,6 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:id="@+id/email_text_profile_settings"
         android:inputType="textEmailAddress"
         android:hint="Email"
