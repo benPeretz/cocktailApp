@@ -24,7 +24,6 @@ public class cocktailDetailFragment extends Fragment {
 
         DataSevice ds=new DataSevice();
 
-        TextView textView=view.findViewById(R.id.textName);
         ImageView imageView=view.findViewById(R.id.imageView);
 
         String id =getArguments().getString("id").replace("\"","");
@@ -34,7 +33,7 @@ public class cocktailDetailFragment extends Fragment {
 
         Cocktail cocktail=ds.getCocktailDetail(id);
 
-        textView.setText(cocktail.getStrDrink());
+        //textView.setText(cocktail.getStrDrink());
 
 
 
