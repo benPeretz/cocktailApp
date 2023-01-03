@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -128,17 +129,11 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
 
     }
 
-
-
     public void write(Person p,View view ){
-
-
-
         String temp =p.email;
          temp =p.phon;
          temp =p.lastName;
          temp =p.firstName;
-
         databaseReference = firebaseDatabase.getReference("users").child(p.phon);
          databaseReference.addValueEventListener(new ValueEventListener() {
              @Override
@@ -151,13 +146,9 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
                  Toast.makeText(view.getContext(),"login not ok",Toast.LENGTH_LONG).show();
              }
          });
-
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference myRef = database.getReference("users").child(p.phon);//in this case we didnt take id from the user (we put it)
-
-
         //myRef.setValue(p);
-
     }
 
 

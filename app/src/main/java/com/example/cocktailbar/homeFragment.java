@@ -25,7 +25,7 @@ public class homeFragment extends Fragment implements recyclerViewInterface {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          view= inflater.inflate(R.layout.fragment_home, container, false);
-         mainActivity2= (MainActivity2) getActivity();
+         mainActivity2 = (MainActivity2) getActivity();
         DataSevice ds=new DataSevice();
          arr= ds.getArrCocktail();
 

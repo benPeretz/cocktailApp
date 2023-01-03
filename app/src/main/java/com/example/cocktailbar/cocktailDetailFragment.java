@@ -26,6 +26,7 @@ public class cocktailDetailFragment extends Fragment {
 
         DataSevice ds=new DataSevice();
 
+
         TextView tv_name=view.findViewById(R.id.tv_name);
         ImageView iv_image=view.findViewById(R.id.iv_image);
         TextView tv_category_result=view.findViewById(R.id.tv_category_result);
@@ -44,6 +45,7 @@ public class cocktailDetailFragment extends Fragment {
         TextView tv_ingredient6=view.findViewById(R.id.tv_ingredient6);
         TextView tv_measure6=view.findViewById(R.id.tv_measure6);
         TextView tv_instructions_result=view.findViewById(R.id.tv_instructions_result);
+
 
 
 
@@ -124,6 +126,7 @@ public class cocktailDetailFragment extends Fragment {
 
 
         }
+
 
 
 
