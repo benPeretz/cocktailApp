@@ -51,7 +51,7 @@ public class homeFragment extends Fragment implements recyclerViewInterface {
 
         Bundle bundle=new Bundle();
         bundle.putString("id",arr.get(position).getIdDrink().toString());
-        bundle.putString("pic",arr.get(position).getPhoto().toString());
+
 
         cocktailDetailFragment cocktailDF=new cocktailDetailFragment();
         cocktailDF.setArguments(bundle);
@@ -64,3 +64,6 @@ public class homeFragment extends Fragment implements recyclerViewInterface {
 
 
 }
+/*
+
+ */

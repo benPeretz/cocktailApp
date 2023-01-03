@@ -104,19 +104,55 @@ public class DataSevice {
 
                 JsonArray drinksArray=drinks.getAsJsonArray();
                 //JsonElement d=drinksArray.get(1).getAsJsonObject().get("strDrink");
+
+                ArrayList<String>ingredientArr=new ArrayList<String>();
+                ArrayList<String>measureArr=new ArrayList<String>();
+
+                String strIngredient="strIngredient";
+                String strMeasure="strMeasure";
+                int temp=1;
+
+                strMeasure=strMeasure+String.valueOf(temp);
+                strIngredient=strIngredient+String.valueOf(temp);
+
                 for (JsonElement j:drinksArray){
                     JsonObject drink=j.getAsJsonObject();
                     JsonElement strDrink = drink.get("strDrink");
                     JsonElement strCategory = drink.get("strCategory");
                     JsonElement strDrinkThumb =drink.get("strDrinkThumb");
                     JsonElement idDrink =drink.get("idDrink");
-
+                    JsonElement strGlass =drink.get("strGlass");
+                    JsonElement strAlcoholic =drink.get("strAlcoholic");
+                    JsonElement strInstructions =drink.get("strInstructions");
                     String strDrinkThumbUrl=strDrinkThumb.getAsString();
-                    //JsonElement strDrink =obj.get("strDrink");
-                    //JsonElement strCategory =obj.get("strCategory");
+
+                    while(temp<12){
+
+                        JsonElement Ingredient =drink.get(strIngredient);
+                        JsonElement Measure =drink.get(strMeasure);
+                        String STRing=Ingredient.toString();
+
+                        if(STRing.equals("null")){
+                            break;
+                        }
+                        ingredientArr.add(Ingredient.toString());
+                        measureArr.add(Measure.toString());
+                        temp++;
+                        strMeasure=strMeasure.substring(0,strMeasure.length()-1);
+                        strIngredient=strIngredient.substring(0,strIngredient.length()-1);
+
+                        strMeasure=strMeasure+String.valueOf(temp);
+                        strIngredient=strIngredient+String.valueOf(temp);
 
 
-                    cocktailDetail=new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl,idDrink.toString());
+                    }
+
+
+                    ArrayList<String>a=ingredientArr;
+                    int size =ingredientArr.size();
+
+                    cocktailDetail=new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl.toString(),strAlcoholic.toString()
+                    ,strGlass.toString(),strInstructions.toString(),ingredientArr,measureArr);
                 }
             }
 
