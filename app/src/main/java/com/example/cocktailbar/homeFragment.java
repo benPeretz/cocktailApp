@@ -50,8 +50,9 @@ public class homeFragment extends Fragment implements recyclerViewInterface {
         Toast.makeText(requireContext(),"stam"+position,Toast.LENGTH_LONG).show();
 
         Bundle bundle=new Bundle();
-        bundle.putString("id",arr.get(position).getIdDrink().toString());
+        bundle.putSerializable("cocktail",arr.get(position));
 
+        String test=arr.get(position).getStrAlcoholic();
 
         cocktailDetailFragment cocktailDF=new cocktailDetailFragment();
         cocktailDF.setArguments(bundle);

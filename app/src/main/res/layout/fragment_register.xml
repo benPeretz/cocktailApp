@@ -25,6 +25,7 @@
         android:inputType="textEmailAddress"
         android:textColorHint="@color/white"
         android:minHeight="48dp"
+
         />
 
     <EditText

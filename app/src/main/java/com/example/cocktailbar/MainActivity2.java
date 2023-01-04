@@ -1,5 +1,6 @@
 package com.example.cocktailbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,22 +9,39 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.cocktailbar.databinding.ActivityMain2Binding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 
-public class MainActivity2 extends AppCompatActivity  {
+import java.util.ArrayList;
+
+public class MainActivity2 extends AppCompatActivity   {
     private FirebaseAuth mAuth;
     private FirebaseStorage storage=FirebaseStorage.getInstance();
     FirebaseDatabase firebaseDatabase;
+
+
+    //for favorite
+    FirebaseFirestore userRef= FirebaseFirestore.getInstance();
+
 
     // creating a variable for our Database
     // Reference for Firebase.
@@ -113,4 +131,84 @@ public class MainActivity2 extends AppCompatActivity  {
             }
         });
     }
+
+
+
+    public void writeToCollection(Cocktail cocktail, View view){
+
+
+        userRef.collection("userF")
+                .document(cocktail.getIdDrink()).set(cocktail)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(view.getContext(),"add",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(view.getContext(),"not added",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+    }
+/*
+    public ArrayList<Cocktail> readFromCollection(){
+
+        ArrayList<Cocktail>arr=new ArrayList<Cocktail>();
+
+        userRef.collection("userF")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
+                            Cocktail cocktail=documentSnapshot.toObject(Cocktail.class);
+                            arr.add(cocktail);
+                        }
+
+
+
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+        return arr;
+    }
+
+ */
+
+    public void readFromCollection(OnCocktailsFetchedListener listener) {
+         ArrayList<Cocktail> arr = new ArrayList<Cocktail>();
+
+        userRef.collection("userF")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Cocktail cocktail = documentSnapshot.toObject(Cocktail.class);
+                            arr.add(cocktail);
+                        }
+                        listener.onCocktailsFetched(arr);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onFetchFailed(e);
+                    }
+                });
+    }
+
+
+
+
+
 }

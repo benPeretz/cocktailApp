@@ -11,20 +11,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 
 public class cocktailDetailFragment extends Fragment {
 
-
+    MainActivity2 mainActivity2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_cocktail_detail, container, false);
 
-        DataSevice ds=new DataSevice();
+        mainActivity2=(MainActivity2) getActivity();
+
+        //DataSevice ds=new DataSevice();
 
 
         TextView tv_name=view.findViewById(R.id.tv_name);
@@ -46,14 +49,18 @@ public class cocktailDetailFragment extends Fragment {
         TextView tv_measure6=view.findViewById(R.id.tv_measure6);
         TextView tv_instructions_result=view.findViewById(R.id.tv_instructions_result);
 
+        FloatingActionButton addToFav=view.findViewById(R.id.floatingActionButton2);
 
 
 
-        String id =getArguments().getString("id").replace("\"","");
+        //String id =getArguments().getString("id").replace("\"","");
 
-        Cocktail cocktail=ds.getCocktailDetail(id);
+        Cocktail cocktail= (Cocktail) getArguments().getSerializable("cocktail");
+        //Cocktail cocktail=ds.getCocktailDetail(id);
+
+        String s=cocktail.getStrAlcoholic().toString();
         tv_category_result.setText(cocktail.getStrCategory().replace("\"",""));
-        tv_alcoholic_result.setText(cocktail.getStrAlcoholic().replace("\"",""));
+        //tv_alcoholic_result.setText(cocktail.getStrAlcoholic().replace("\"",""));
         tv_Glass_result.setText(cocktail.getStrGlass().replace("\"",""));
         tv_name.setText(cocktail.getStrDrink().replace("\"",""));
         tv_instructions_result.setText(cocktail.getStrInstructions().replace("\"",""));
@@ -127,7 +134,12 @@ public class cocktailDetailFragment extends Fragment {
 
         }
 
-
+        addToFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity2.writeToCollection(cocktail,view);
+            }
+        });
 
 
 

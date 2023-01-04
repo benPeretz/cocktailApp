@@ -14,7 +14,7 @@ public class Cocktail implements Serializable {
     private ArrayList<String> strIngredient;
     private ArrayList<String> strMeasure;
 
-    public Cocktail(String strDrink, String strCategory, String photo, String strAlcoholic, String strGlass, String strInstructions, ArrayList<String> strIngredient, ArrayList<String> strMeasure) {
+    public Cocktail(String strDrink, String strCategory, String photo, String strAlcoholic, String strGlass, String strInstructions, ArrayList<String> strIngredient, ArrayList<String> strMeasure,String idDrink) {
         this.strDrink = strDrink;
         this.strCategory = strCategory;
         this.photo = photo;
@@ -23,6 +23,10 @@ public class Cocktail implements Serializable {
         this.strInstructions = strInstructions;
         this.strIngredient = strIngredient;
         this.strMeasure = strMeasure;
+        this.idDrink=idDrink;
+    }
+
+    public Cocktail() {
     }
 
     public String getStrAlcoholic() {

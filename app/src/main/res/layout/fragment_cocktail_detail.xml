@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cocktailDetailFragment"
+    android:background="@drawable/background4"
     android:orientation="vertical"
-    android:background="@drawable/background4">
+    tools:context=".cocktailDetailFragment">
+
 
     <TextView
         android:id="@+id/tv_name"
@@ -19,13 +20,40 @@
         android:textColor="@color/white"
         android:textSize="40sp" />
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        tools:src="@tools:sample/avatars"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+
+            android:layout_marginTop="30dp"
+            tools:src="@tools:sample/avatars"
+
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_favorite_24"
+            android:layout_marginLeft="30dp"
+            android:backgroundTint="@color/white"/>
+
+
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,333 +65,292 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Category : "
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:id="@+id/tv_category"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:id="@+id/tv_category_result"
-                />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Alcoholic : "
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:id="@+id/tv_alcoholic"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:id="@+id/tv_alcoholic_result"
-            />
-        </LinearLayout>
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                >
+                android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/tv_category"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Glass : "
+                    android:text="Category : "
                     android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:id="@+id/tv_Glass"/>
+                    android:textSize="24sp" />
+
                 <TextView
+                    android:id="@+id/tv_category_result"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:id="@+id/tv_Glass_result"
-                    />
+                    android:textSize="24sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/tv_alcoholic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Alcoholic : "
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_alcoholic_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_Glass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Glass : "
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_Glass_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/tv_ingredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Ingredient"
                     android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:id="@+id/tv_ingredient"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
+                    android:textSize="28sp" />
 
                 <TextView
+                    android:id="@+id/tv_measure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Measure"
                     android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:id="@+id/tv_measure"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
+                    android:textSize="28sp" />
 
             </LinearLayout>
 
 
-
             <LinearLayout
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
+                    android:id="@+id/tv_ingredient1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Ingredient1"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:id="@+id/tv_ingredient1"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
+                    android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/tv_measure1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Measure1"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:id="@+id/tv_measure1"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
-
+                    android:textSize="22sp" />
 
 
             </LinearLayout>
 
 
-
             <LinearLayout
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
+                    android:id="@+id/tv_ingredient2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Ingredient2"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:id="@+id/tv_ingredient2"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
+                    android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/tv_measure2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Measure2"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:id="@+id/tv_measure2"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
-
+                    android:textSize="22sp" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
+                    android:id="@+id/tv_ingredient3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Ingredient3"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:id="@+id/tv_ingredient3"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
+                    android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/tv_measure3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Measure3"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:id="@+id/tv_measure3"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    />
-
+                    android:textSize="22sp" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
                     android:id="@+id/tv_ingredient4"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
                     android:id="@+id/tv_measure4"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
-
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
                     android:id="@+id/tv_ingredient5"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
                     android:id="@+id/tv_measure5"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
             </LinearLayout>
-
-
 
 
             <LinearLayout
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
                     android:id="@+id/tv_ingredient6"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
                     android:id="@+id/tv_measure6"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
-
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_instructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="28sp"
                 android:text="Instructions :"
                 android:textColor="@color/white"
-                android:id="@+id/tv_instructions"
-                />
+                android:textSize="28sp" />
 
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:id="@+id/tv_instructions_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:layout_marginTop="10dp"
                 android:text="Instructions :"
                 android:textColor="@color/white"
-                android:id="@+id/tv_instructions_result"
-                />
+                android:textSize="24sp" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-</LinearLayout>
-
-
+        </LinearLayout>
 
 
     </ScrollView>

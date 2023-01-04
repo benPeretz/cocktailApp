@@ -49,21 +49,65 @@ public class DataSevice {
             if(drinks!=null){
 
                 JsonArray drinksArray=drinks.getAsJsonArray();
-                //JsonElement d=drinksArray.get(1).getAsJsonObject().get("strDrink");
+
+
+
+
+
+                String strIngredient="strIngredient";
+                String strMeasure="strMeasure";
+                int temp=1;
+
+
                 for (JsonElement j:drinksArray){
                     JsonObject drink=j.getAsJsonObject();
                     JsonElement strDrink = drink.get("strDrink");
                     JsonElement strCategory = drink.get("strCategory");
                     JsonElement strDrinkThumb =drink.get("strDrinkThumb");
                     JsonElement idDrink =drink.get("idDrink");
-
+                    JsonElement strGlass =drink.get("strGlass");
+                    JsonElement strAlcoholic =drink.get("strAlcoholic");
+                    JsonElement strInstructions =drink.get("strInstructions");
                     String strDrinkThumbUrl=strDrinkThumb.getAsString();
-                    //JsonElement strDrink =obj.get("strDrink");
-                    //JsonElement strCategory =obj.get("strCategory");
+                    temp=1;
+
+                    ArrayList<String>ingredientArr=new ArrayList<String>();
+                    ArrayList<String>measureArr=new ArrayList<String>();
+                    while(temp<6){
+
+                        strMeasure=strMeasure+String.valueOf(temp);
+                        strIngredient=strIngredient+String.valueOf(temp);
+                        JsonElement Ingredient =drink.get(strIngredient);
+                        JsonElement Measure =drink.get(strMeasure);
+                        String STRing=Ingredient.toString();
+
+                        if(STRing.equals("null")){
+                            strMeasure=strMeasure.substring(0,strMeasure.length()-1);
+                            strIngredient=strIngredient.substring(0,strIngredient.length()-1);
+                            break;
+                        }
+                        ingredientArr.add(Ingredient.toString());
+                        measureArr.add(Measure.toString());
+                        temp++;
+                        strMeasure=strMeasure.substring(0,strMeasure.length()-1);
+                        strIngredient=strIngredient.substring(0,strIngredient.length()-1);
 
 
-                    arrCocktail.add(new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl,idDrink.toString()));
+
+
+                    }
+
+
+                    //ArrayList<String>a=ingredientArr;
+                    //int size =ingredientArr.size();
+
+                    cocktailDetail=new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl.toString(),strAlcoholic.toString()
+                            ,strGlass.toString(),strInstructions.toString(),ingredientArr,measureArr,idDrink.toString());
+                    arrCocktail.add(cocktailDetail);
                 }
+
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,6 +116,7 @@ public class DataSevice {
         return arrCocktail;
 
     }
+    /*
     public Cocktail getCocktailDetail(String strId){
 
         String sURL="https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+strId;
@@ -152,7 +197,7 @@ public class DataSevice {
                     int size =ingredientArr.size();
 
                     cocktailDetail=new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl.toString(),strAlcoholic.toString()
-                    ,strGlass.toString(),strInstructions.toString(),ingredientArr,measureArr);
+                    ,strGlass.toString(),strInstructions.toString(),ingredientArr,measureArr,idDrink.toString());
                 }
             }
 
@@ -168,4 +213,6 @@ public class DataSevice {
 
         return cocktailDetail;
     }
+
+     */
 }

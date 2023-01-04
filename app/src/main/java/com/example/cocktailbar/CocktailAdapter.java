@@ -21,11 +21,22 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
     private  recyclerViewInterface recyclerVI;
 
+    private OnCocktailsFetchedListener onCocktailsFetchedListener;
     public CocktailAdapter(ArrayList<Cocktail>dataSet,recyclerViewInterface recyclerVI){
     //public CocktailAdapter(ArrayList<Cocktail>dataSet){
         this.dataSet=dataSet;
         this.recyclerVI=recyclerVI;
     }
+    /*
+    public CocktailAdapter(ArrayList<Cocktail>dataSet,recyclerViewInterface recyclerVI,OnCocktailsFetchedListener onCocktailsFetchedListener){
+        //public CocktailAdapter(ArrayList<Cocktail>dataSet){
+        this.dataSet=dataSet;
+        this.recyclerVI=recyclerVI;
+        this.onCocktailsFetchedListener=onCocktailsFetchedListener;
+
+    }
+
+     */
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;

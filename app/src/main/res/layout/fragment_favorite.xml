@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".favoriteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="favorite" />
+        android:id="@+id/recyclerView"
+        tools:listitem="@layout/card_home_fragment_layout"
+
+
+
+
+        />
 
 </FrameLayout>
