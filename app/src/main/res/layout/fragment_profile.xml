@@ -43,6 +43,7 @@
             app:iconTint="@color/red"
             android:textColor="@color/red"
             android:textSize="14sp"
+
             />
         <TextView
             android:layout_width="match_parent"

@@ -13,4 +13,7 @@
     <item android:title="favorite"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:id="@+id/favorite_button_NB"/>
+    <item android:title="My cocktail"
+        android:icon="@drawable/ic_baseline_wine_bar_24"
+        android:id="@+id/myCocktail_button_NB"/>
 </menu>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.JsonElement;
@@ -50,7 +51,7 @@ public class entryFragment extends Fragment {
         btn_to_app_guestMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //mainActivity.moveToSecActivity();
+                Toast.makeText(getContext(),"Guest Mode",Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(R.id.action_entryFragment_to_mainActivity2);
             }
         });
@@ -61,17 +62,3 @@ public class entryFragment extends Fragment {
 }//
 
 
-/*
-    JsonObject obj=rootobj.getAsJsonObject();
-
-    JsonElement drinks =obj.get("drinks");
-            if(drinks!=null){
-
-                    JsonArray drinksArray=drinks.getAsJsonArray();
-                    //JsonElement d=drinksArray.get(1).getAsJsonObject().get("strDrink");
-                    for (JsonElement j:drinksArray){
-                    JsonObject drink=j.getAsJsonObject();
-                    JsonElement strDrink = drink.get("strDrink");
-                    JsonElement strCategory = drink.get("strCategory");
-
- */

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".favoriteFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,7 @@
         tools:listitem="@layout/card_home_fragment_layout"
 
 
+       />
 
-
-        />
 
 </FrameLayout>
