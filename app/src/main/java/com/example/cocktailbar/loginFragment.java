@@ -30,7 +30,7 @@ public class loginFragment extends Fragment {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.funcLogin(et_email,et_pass,view);
+                mainActivity.funcLogin(et_email,et_pass,view,0);
             }
         });
 

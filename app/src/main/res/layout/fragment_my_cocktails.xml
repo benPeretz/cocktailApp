@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myCocktailsFragment"
+    android:orientation="vertical"
+    android:background="@drawable/bear_cocktail1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="Create your own\n cocktail"
+        android:textColor="@color/white"
+        android:textSize="48sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Drink Name:"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Name"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_drinkName"
+
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Drink Category:"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Category"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_drinkCategory"
+
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Alcoholic :"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Alcoholic"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_drinkAlcoholic"
+
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Drink Glass:"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Glass"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                   android:id="@+id/et_drinkGlass"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="instructions :"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="instructions - "
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="24sp"
+                android:maxLength="1000"
+                android:id="@+id/et_drinkInstructions"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/tv_ingredient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Ingredient"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/tv_measure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Measure"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingredient1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_ingredient1"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Measure1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_measure1"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_ingredient2"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_measure2"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_ingredient3"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_measure3"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_ingredient4"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_measure4"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_ingredient5"
+                    />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_measure5"
+                    />
+            </LinearLayout>
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="finish"
+    android:id="@+id/button_finishCocktail"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>
