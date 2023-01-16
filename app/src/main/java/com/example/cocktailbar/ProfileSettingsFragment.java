@@ -8,12 +8,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.cocktailbar.databinding.FragmentProfileSettingsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,34 +33,57 @@ public class ProfileSettingsFragment extends Fragment {
     MainActivity2 mainActivity2;
     private FirebaseAuth mAuth;
     FirebaseFirestore userRef;
+    private FragmentProfileSettingsBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile_settings, container, false);
+        binding = FragmentProfileSettingsBinding.inflate(inflater, container, false);
         mAuth = FirebaseAuth.getInstance();
-        readCurrentUserFromFireStore(view);
+        Button saveButton = binding.buttonSaveProfileSettings;
+        EditText firstNameText = binding.firstNameTextProfileSettings;
+        EditText lastNameText = binding.lastNameTextProfileSettings;
+        EditText phoneNumberText = binding.phoneNumberTextProfileSettings;
+        EditText emailText = binding.emailTextProfileSettings;
+        readCurrentUserFromFireStore();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DocumentReference docRef = userRef.collection("user").document(mAuth.getCurrentUser().getEmail());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Person person = new Person(emailText.getText().toString(), phoneNumberText.getText().toString(), firstNameText.getText().toString(), lastNameText.getText().toString());
+                                docRef.set(person);
 
-//        EditText firstNameText = view.findViewById(R.id.first_name_text_profile_settings);
-//        EditText lastNameText = view.findViewById(R.id.last_name_text_profile_settings);
-//        EditText phoneNumberText = view.findViewById(R.id.phone_number_text_profile_settings);
-//        EditText emailText = view.findViewById(R.id.email_text_profile_settings);
+                            } else {
+                                // The person document does not exist
+                            }
+                        } else {
+                            // An error occurred while retrieving the document
+                        }
+                    }
+                });
+                profileFragment profileFragment=new profileFragment();
+                mainActivity2.replaceFragment(profileFragment);
 
-
-        return view;
+            }
+        });
+        return binding.getRoot();
     }
 
-    private void readCurrentUserFromFireStore(View view) {
+    private void readCurrentUserFromFireStore() {
         FirebaseUser user = mAuth.getCurrentUser();
         userRef= FirebaseFirestore.getInstance();
-        EditText firstNameText = view.findViewById(R.id.first_name_text_profile_settings);
-        EditText lastNameText = view.findViewById(R.id.last_name_text_profile_settings);
-        EditText phoneNumberText = view.findViewById(R.id.phone_number_text_profile_settings);
-        EditText emailText = view.findViewById(R.id.email_text_profile_settings);
+        Boolean isFirstNameChanged, Boolean;
         if (user != null){
             String email =user.getEmail();
             mainActivity2 = (MainActivity2) getActivity();
-            mainActivity2.read(firstNameText,lastNameText,phoneNumberText,emailText,user.getEmail());
+            mainActivity2.read(binding.firstNameTextProfileSettings,binding.lastNameTextProfileSettings,binding.phoneNumberTextProfileSettings,binding.emailTextProfileSettings,user.getEmail(), binding.getRoot());
         }
     }
+
 }
