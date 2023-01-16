@@ -53,8 +53,11 @@ public class MainActivity2 extends AppCompatActivity   {
 
     private Person CurrentUser;
 
-
-
+    @Override
+    public void onBackPressed() {
+        //Remove this if you want to stop back pressing to go back to login
+        super.onBackPressed();
+    }
 
     //for favorite
     FirebaseFirestore userRef= FirebaseFirestore.getInstance();
