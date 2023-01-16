@@ -12,8 +12,11 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -43,6 +46,12 @@ public class MainActivity2 extends AppCompatActivity   {
     private FirebaseAuth mAuth;
     private FirebaseStorage storage=FirebaseStorage.getInstance();
     FirebaseDatabase firebaseDatabase;
+
+    public Person getCurrentUser() {
+        return CurrentUser;
+    }
+
+    private Person CurrentUser;
 
 
 
@@ -121,7 +130,7 @@ public class MainActivity2 extends AppCompatActivity   {
         fragmentTransaction.commit();
     }
      */
-    public void read(EditText firstNameText, EditText lastNameText, EditText phoneNumberText, EditText emailText, String currentUserEmail){
+    public void read(EditText firstNameText, EditText lastNameText, EditText phoneNumberText, EditText emailText, String currentUserEmail, View view){
         // Read from the database
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading data...");
@@ -134,18 +143,116 @@ public class MainActivity2 extends AppCompatActivity   {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
+                    CurrentUser = new Person();
                     DocumentSnapshot document = task.getResult();
-                    firstNameText.setText(document.get("firstName").toString());
-                    lastNameText.setText(document.get("lastName").toString());
-                    phoneNumberText.setText(document.get("phon").toString());
+                    CurrentUser.firstName = document.get("firstName").toString();
+                    CurrentUser.lastName = document.get("lastName").toString();
+                    CurrentUser.phon = document.get("phon").toString();
+                    CurrentUser.email = currentUserEmail;
+                    firstNameText.setText(CurrentUser.firstName);
+                    lastNameText.setText(CurrentUser.lastName);
+                    phoneNumberText.setText(CurrentUser.phon);
                     emailText.setText(currentUserEmail);
                     Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    addTextChangeToAllEditText(firstNameText, lastNameText, phoneNumberText, emailText, view);
                 } else {
                     progressDialog.dismiss();
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
         });
+    }
+
+    Boolean isFirstNameChanged = false, isLastNameChanged = false, isPhoneNumberChange = false, isEmailChanged = false;
+    private void addTextChangeToAllEditText(EditText firstNameText, EditText lastNameText, EditText phoneNumberText, EditText emailText, View view){
+        String initFirstName = getCurrentUser().firstName;
+        String initLastName = getCurrentUser().lastName;
+        String initPhoneNumber = getCurrentUser().phon;
+        String initEmail = getCurrentUser().email;
+        firstNameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(initFirstName)){
+                    isFirstNameChanged = true;
+                }
+                else{
+                    isFirstNameChanged = false;
+                }
+                checkifEditTextChanged(view);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        lastNameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(initLastName)){
+                    isLastNameChanged = true;
+                }
+                else{
+                    isLastNameChanged = false;
+                }
+                checkifEditTextChanged(view);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        phoneNumberText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(initPhoneNumber)){
+                    isPhoneNumberChange = true;
+                }
+                else{
+                    isPhoneNumberChange = false;
+                }
+                checkifEditTextChanged(view);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        emailText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(initEmail)){
+                    isEmailChanged = true;
+                }
+                else{
+                    isEmailChanged = false;
+                }
+                checkifEditTextChanged(view);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+    private void checkifEditTextChanged(View view){
+        Button confirmButton = view.findViewById(R.id.button_save_profile_settings);
+        confirmButton.setEnabled(isEmailChanged || isFirstNameChanged || isLastNameChanged || isPhoneNumberChange);
     }
 
 
@@ -201,7 +308,6 @@ public class MainActivity2 extends AppCompatActivity   {
                     }
                 }
             });
-
         }
 
 
@@ -293,7 +399,4 @@ public class MainActivity2 extends AppCompatActivity   {
         //intent.putExtra("userLogout",1);
         startActivity(intent);
     }
-
-
-
 }
