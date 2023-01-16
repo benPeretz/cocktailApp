@@ -1,5 +1,7 @@
 package com.example.cocktailbar;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -117,30 +120,30 @@ public class MainActivity2 extends AppCompatActivity   {
         fragmentTransaction.replace(R.id.frameLayoutContainer,fragment);
         fragmentTransaction.commit();
     }
-
      */
-    public void read(EditText firstName, EditText lastName, EditText phoneNumber, EditText email, String currentUserPhoneNumber){
+    public void read(EditText firstNameText, EditText lastNameText, EditText phoneNumberText, EditText emailText, String currentUserEmail){
         // Read from the database
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading data...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(currentUserPhoneNumber);
-        myRef.addValueEventListener(new ValueEventListener() {
+        DocumentReference docRef = userRef.collection("user").document(currentUserEmail);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("check", dataSnapshot.getValue(Person.class).toString());
-                Person value = dataSnapshot.getValue(Person.class);
-                if(value == null){
-                    Toast.makeText(MainActivity2.this, "No such id", Toast.LENGTH_SHORT).show();
-                }else{
-                    firstName.setText(value.firstName);
-                    lastName.setText(value.lastName);
-                    phoneNumber.setText(value.phon);
-                    email.setText(value.email);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    DocumentSnapshot document = task.getResult();
+                    firstNameText.setText(document.get("firstName").toString());
+                    lastNameText.setText(document.get("lastName").toString());
+                    phoneNumberText.setText(document.get("phon").toString());
+                    emailText.setText(currentUserEmail);
+                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                } else {
+                    progressDialog.dismiss();
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Toast.makeText(MainActivity2.this, "No such id", Toast.LENGTH_SHORT).show();
             }
         });
     }

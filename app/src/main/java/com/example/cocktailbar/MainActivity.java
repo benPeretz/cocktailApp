@@ -83,8 +83,6 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
     String email =emailText.getText().toString().trim();
     String password=passText.getText().toString().trim();
 
-
-
     mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -132,12 +130,7 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
     }
 
 
-public void write(Person p,View view ){
-    String temp =p.email;
-    temp =p.phon;
-    temp =p.lastName;
-    temp =p.firstName;
-
+public void write(Person p,View view){
     userRef.collection("user")
             .document(p.email)
             .set(p)
