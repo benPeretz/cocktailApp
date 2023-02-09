@@ -1,4 +1,4 @@
-package com.example.cocktailbar;
+package com.example.cocktailbar.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.cocktailbar.MainActivity;
+import com.example.cocktailbar.MainActivity2;
+import com.example.cocktailbar.R;
+import com.example.cocktailbar.ui.ProfileSettingsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -44,7 +48,7 @@ public class profileFragment extends Fragment {
                     ProfileSettingsFragment profileSettingsFragment=new ProfileSettingsFragment();
                     mainActivity2.replaceFragment(profileSettingsFragment);
                 }else{
-                    Intent intent=new Intent(requireContext(),MainActivity.class);
+                    Intent intent=new Intent(requireContext(), MainActivity.class);
                     startActivity(intent);
                 }
 

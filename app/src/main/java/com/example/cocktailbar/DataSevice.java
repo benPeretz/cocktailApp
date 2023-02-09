@@ -1,8 +1,8 @@
 package com.example.cocktailbar;
 
 import android.os.StrictMode;
-import android.util.Log;
 
+import com.example.cocktailbar.models.Cocktail;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

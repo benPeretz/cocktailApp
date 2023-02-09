@@ -1,4 +1,4 @@
-package com.example.cocktailbar;
+package com.example.cocktailbar.models;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ public class Person {
     public String firstName;
     public String lastName;
     public ArrayList<String>favorite;
+    public ArrayList<Cocktail>cocktails;
 
     public Person(String email, String phon, String firstName, String lastName) {
         this.email = email;
@@ -16,6 +17,7 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.favorite=new ArrayList<>();
+        this.cocktails=new ArrayList<>();
     }
     public Person(){
 

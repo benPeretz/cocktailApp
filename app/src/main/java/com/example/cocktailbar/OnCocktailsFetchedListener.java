@@ -1,5 +1,7 @@
 package com.example.cocktailbar;
 
+import com.example.cocktailbar.models.Cocktail;
+
 import java.util.ArrayList;
 
 public interface OnCocktailsFetchedListener {

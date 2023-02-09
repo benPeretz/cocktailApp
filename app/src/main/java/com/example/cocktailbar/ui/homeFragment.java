@@ -1,4 +1,4 @@
-package com.example.cocktailbar;
+package com.example.cocktailbar.ui;
 
 import android.os.Bundle;
 
@@ -11,6 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.example.cocktailbar.CocktailAdapter;
+import com.example.cocktailbar.DataSevice;
+import com.example.cocktailbar.MainActivity2;
+import com.example.cocktailbar.R;
+import com.example.cocktailbar.models.Cocktail;
+import com.example.cocktailbar.recyclerViewInterface;
 
 import java.util.ArrayList;
 
@@ -27,18 +34,17 @@ public class homeFragment extends Fragment implements recyclerViewInterface {
          view= inflater.inflate(R.layout.fragment_home, container, false);
          mainActivity2 = (MainActivity2) getActivity();
         DataSevice ds=new DataSevice();
+
+        //getting the cocktail arraylist from the api
          arr= ds.getArrCocktail();
 
-       // CocktailAdapter cocktailAdapter=new CocktailAdapter(arr);
+
+        //recycler view
         CocktailAdapter cocktailAdapter=new CocktailAdapter(arr,this);
-
         RecyclerView recyclerView=view.findViewById(R.id.recyclerView);
-
         LinearLayoutManager layoutManager=new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
-
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         recyclerView.setAdapter(cocktailAdapter);
 
         return view;
@@ -47,13 +53,10 @@ public class homeFragment extends Fragment implements recyclerViewInterface {
 
     public void onItemClick(int position) {
 
-        Toast.makeText(requireContext(),"stam"+position,Toast.LENGTH_LONG).show();
-
         Bundle bundle=new Bundle();
+
+        //passing the cocktail object that the user chosen
         bundle.putSerializable("cocktail",arr.get(position));
-
-        String test=arr.get(position).getStrAlcoholic();
-
         cocktailDetailFragment cocktailDF=new cocktailDetailFragment();
         cocktailDF.setArguments(bundle);
 

@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background4"
     android:orientation="vertical"
-    tools:context=".ProfileSettingsFragment">
+    tools:context=".ui.ProfileSettingsFragment">
 
     <ImageView
         android:layout_width="100dp"

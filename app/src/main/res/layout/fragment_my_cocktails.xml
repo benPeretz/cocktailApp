@@ -3,9 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myCocktailsFragment"
+    tools:context=".ui.myCocktailsFragment"
     android:orientation="vertical"
     android:background="@drawable/bear_cocktail1">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:id="@+id/accountScreen"
+        >
 
     <TextView
         android:layout_width="match_parent"
@@ -350,7 +360,25 @@
 
     </ScrollView>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/guestScreen"
+        android:background="@drawable/lini">
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="CREATE ACCOUNT !!"
+
+
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+    </LinearLayout>
 
 </LinearLayout>
