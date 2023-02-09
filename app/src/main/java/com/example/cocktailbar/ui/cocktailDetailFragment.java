@@ -1,4 +1,4 @@
-package com.example.cocktailbar;
+package com.example.cocktailbar.ui;
 
 import android.os.Bundle;
 
@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.cocktailbar.MainActivity2;
+import com.example.cocktailbar.R;
+import com.example.cocktailbar.models.Cocktail;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,9 +30,6 @@ public class cocktailDetailFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_cocktail_detail, container, false);
 
         mainActivity2=(MainActivity2) getActivity();
-
-        //DataSevice ds=new DataSevice();
-
 
         TextView tv_name=view.findViewById(R.id.tv_name);
         ImageView iv_image=view.findViewById(R.id.iv_image);
@@ -52,15 +53,14 @@ public class cocktailDetailFragment extends Fragment {
         FloatingActionButton addToFav=view.findViewById(R.id.floatingActionButton2);
 
 
-
-        //String id =getArguments().getString("id").replace("\"","");
-
+        //getting the object from another fragment
         Cocktail cocktail= (Cocktail) getArguments().getSerializable("cocktail");
-        //Cocktail cocktail=ds.getCocktailDetail(id);
 
         String s=cocktail.getStrAlcoholic().toString();
+
+
+        //initialize the wigite
         tv_category_result.setText(cocktail.getStrCategory().replace("\"",""));
-        //tv_alcoholic_result.setText(cocktail.getStrAlcoholic().replace("\"",""));
         tv_Glass_result.setText(cocktail.getStrGlass().replace("\"",""));
         tv_name.setText(cocktail.getStrDrink().replace("\"",""));
         tv_instructions_result.setText(cocktail.getStrInstructions().replace("\"",""));
@@ -69,6 +69,8 @@ public class cocktailDetailFragment extends Fragment {
         ArrayList<String>ingredient=cocktail.getStrIngredient();
         ArrayList<String>measure=cocktail.getStrMeasure();
 
+
+        //initialized the ingredient wigite depend on the size of the array
         int size=ingredient.size();
         switch (size){
             case 1:
@@ -135,10 +137,20 @@ public class cocktailDetailFragment extends Fragment {
         }
 
         addToFav.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
+
+                //sending the request to the func ,if it's not in favorite ->add ,else->remove
                 mainActivity2.writeToCollection(cocktail,view);
+
+                homeFragment homeFragment=new homeFragment();
+                mainActivity2.replaceFragment(homeFragment);
+
             }
+
+
         });
 
 

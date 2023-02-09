@@ -1,4 +1,4 @@
-package com.example.cocktailbar;
+package com.example.cocktailbar.ui;
 
 import android.os.Bundle;
 
@@ -9,6 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.example.cocktailbar.MainActivity2;
+import com.example.cocktailbar.R;
+import com.example.cocktailbar.models.Cocktail;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -16,7 +24,7 @@ import java.util.ArrayList;
 
 public class myCocktailsFragment extends Fragment {
 
-
+    private FirebaseAuth mAuth;
     MainActivity2 mainActivity2;
 
 
@@ -27,6 +35,9 @@ public class myCocktailsFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_my_cocktails, container, false);
 
         mainActivity2=(MainActivity2) getActivity();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user=mAuth.getCurrentUser();
+
 
         EditText et_drinkName=view.findViewById(R.id.et_drinkName);
         EditText et_drinkCategory=view.findViewById(R.id.et_drinkCategory);
@@ -46,6 +57,17 @@ public class myCocktailsFragment extends Fragment {
 
         Button btn_finish=view.findViewById(R.id.button_finishCocktail);
 
+        LinearLayout accountScreen=view.findViewById(R.id.accountScreen);
+        LinearLayout guestScreen=view.findViewById(R.id.guestScreen);
+
+
+        if(user==null){
+            guestScreen.setVisibility(View.VISIBLE);
+            accountScreen.setVisibility(View.GONE);
+        }else {
+            accountScreen.setVisibility(View.VISIBLE);
+            guestScreen.setVisibility(View.GONE);
+        }
 
         ArrayList<String>ingredientArr=new ArrayList<>();
         ArrayList<String>measureArr=new ArrayList<>();
@@ -53,6 +75,7 @@ public class myCocktailsFragment extends Fragment {
 
 
 
+        //giving random id to our cocktail
         int min = 1;
         int max = 999999;
         int drinkId = min + new SecureRandom().nextInt((max - min) + 1);
@@ -84,7 +107,10 @@ public class myCocktailsFragment extends Fragment {
                         ingredientArr,measureArr,String.valueOf(drinkId));
 
 
-                mainActivity2.writeToCollection(cocktail,view);
+                Toast.makeText(requireContext(),"Added to favorit",Toast.LENGTH_LONG).show();
+                mainActivity2.writeToCollectionMyCocktail(cocktail,view);
+                homeFragment homeFragment=new homeFragment();
+                mainActivity2.replaceFragment(homeFragment);
             }
         });
 

@@ -1,4 +1,4 @@
-package com.example.cocktailbar;
+package com.example.cocktailbar.ui;
 
 import android.os.Bundle;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.cocktailbar.MainActivity;
+import com.example.cocktailbar.R;
 
 
 public class loginFragment extends Fragment {

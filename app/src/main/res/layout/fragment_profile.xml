@@ -5,7 +5,7 @@
     android:background="@drawable/background4"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context=".profileFragment">
+    tools:context=".ui.profileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

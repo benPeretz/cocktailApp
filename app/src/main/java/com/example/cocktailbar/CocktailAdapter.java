@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cocktailbar.models.Cocktail;
 
 import java.util.ArrayList;
 
@@ -96,7 +97,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.MyView
 
         textViewName.setText(dataSet.get(position).getStrDrink().replace("\"",""));
         textViewNativeName.setText(dataSet.get(position).getStrCategory().replace("\"",""));
-        Glide.with(holder.itemView.getContext()).load(dataSet.get(position).getPhoto()).circleCrop().error(R.drawable.ic_launcher_background).into(imageViewF);
+        Glide.with(holder.itemView.getContext()).load(dataSet.get(position).getPhoto()).circleCrop().error(R.drawable.def_pic).into(imageViewF);
           
         
         holder.cardView.setOnClickListener(new View.OnClickListener() {

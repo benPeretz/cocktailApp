@@ -2,18 +2,15 @@ package com.example.cocktailbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cocktailbar.models.Person;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,11 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -68,15 +62,31 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user=mAuth.getCurrentUser();
 
         //if the user already login
+        /*
         if(user!=null){
             Toast.makeText(this,"log in",Toast.LENGTH_LONG).show();
             Intent intent=new Intent(this,MainActivity2.class);
             startActivity(intent);
         }
 
+         */
+
 
 
     }
+    //if the user already login
+    public boolean currentUser(){
+        FirebaseUser user=mAuth.getCurrentUser();
+        if(user!=null){
+            Toast.makeText(this,"log in",Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(this,MainActivity2.class);
+            startActivity(intent);
+
+            return true;
+        }
+        else return false;
+    }
+
 
 
 public  void funcRegister(EditText emailText, EditText passText,EditText firstName,EditText lastName,EditText phon, View view) {// save info in realTime Database (fireBase)

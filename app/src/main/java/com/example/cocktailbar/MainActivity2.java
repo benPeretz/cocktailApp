@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,18 +22,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.cocktailbar.databinding.ActivityMain2Binding;
+import com.example.cocktailbar.models.Cocktail;
+import com.example.cocktailbar.models.Person;
+import com.example.cocktailbar.ui.favoriteFragment;
+import com.example.cocktailbar.ui.homeFragment;
+import com.example.cocktailbar.ui.myCocktailsFragment;
+import com.example.cocktailbar.ui.profileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -125,14 +128,6 @@ public class MainActivity2 extends AppCompatActivity   {
     }
 
 
-    /*public void replaceFragment(Fragment fragment,Bundle bundle){
-
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayoutContainer,fragment);
-        fragmentTransaction.commit();
-    }
-     */
     public void read(EditText firstNameText, EditText lastNameText, EditText phoneNumberText, EditText emailText, String currentUserEmail, View view){
         // Read from the database
         ProgressDialog progressDialog = new ProgressDialog(this);
@@ -259,30 +254,18 @@ public class MainActivity2 extends AppCompatActivity   {
     }
 
 
-/*
-    public void writeToCollection(Cocktail cocktail, View view){
 
+public boolean currentUser(){
+    FirebaseUser user=mAuth.getCurrentUser();
+    if(user!=null){
+        Toast.makeText(this,"log in",Toast.LENGTH_LONG).show();
+        Intent intent=new Intent(this,MainActivity2.class);
+        startActivity(intent);
 
-        userRef.collection("userF")
-                .document(cocktail.getIdDrink()).set(cocktail)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(view.getContext(),"add",Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(view.getContext(),"not added",Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
+        return true;
     }
-
- */
-
+    else return false;
+}
 
     public void writeToCollection(Cocktail cocktail, View view){
 
@@ -301,8 +284,28 @@ public class MainActivity2 extends AppCompatActivity   {
                         if (document.exists()) {
                             Person person = document.toObject(Person.class);
                             String favoriteString = cocktail.getIdDrink().replace("\"","");
-                            person.favorite.add(favoriteString);
+
+                            //if the cocktail is inside the fav so take is out ,else insert to fav
+                            if (person.favorite.contains(favoriteString)){
+                                Toast.makeText(getApplicationContext(),"Remove from favorite",Toast.LENGTH_LONG).show();
+                                person.favorite.remove(favoriteString);
+                            }
+
+                            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                if (person.cocktails.stream().anyMatch(c -> c.getIdDrink().equals(cocktail.getIdDrink()))) {
+                                    Toast.makeText(getApplicationContext(),"Remove your own cocktail",Toast.LENGTH_LONG).show();
+                                    person.cocktails.removeIf(c -> c.getIdDrink().equals(cocktail.getIdDrink()));
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(),"Added to favorite",Toast.LENGTH_LONG).show();
+
+                                    person.favorite.add(favoriteString);
+                                }
+                            }
                             docRef.set(person);
+
+
+
                         } else {
                             // The person document does not exist
                         }
@@ -318,80 +321,43 @@ public class MainActivity2 extends AppCompatActivity   {
     }
 
 
-/*
-    public ArrayList<Cocktail> readFromCollection(){
+    public void writeToCollectionMyCocktail(Cocktail cocktail, View view){
 
-        ArrayList<Cocktail>arr=new ArrayList<Cocktail>();
+        FirebaseUser user=mAuth.getCurrentUser();
 
-        userRef.collection("userF")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
-                            Cocktail cocktail=documentSnapshot.toObject(Cocktail.class);
-                            arr.add(cocktail);
+
+        //if the user already login
+        if(user!=null){
+            String email =user.getEmail();
+            DocumentReference docRef = userRef.collection("user").document(email);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Person person = document.toObject(Person.class);
+                            String favoriteString = cocktail.getIdDrink().replace("\"","");
+
+                            //if the cocktail is inside the fav so take is out ,else insert to fav
+
+                            person.cocktails.add(cocktail);
+                            docRef.set(person);
+
+
+
+                        } else {
+                            // The person document does not exist
                         }
-
-
-
-
+                    } else {
+                        // An error occurred while retrieving the document
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                }
+            });
+        }
 
-                    }
-                });
-        return arr;
-    }
 
- */
 
-    public void readFromCollection(OnCocktailsFetchedListener listener) {
-         ArrayList<Cocktail> arr = new ArrayList<Cocktail>();
-
-        userRef.collection("userF")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Cocktail cocktail = documentSnapshot.toObject(Cocktail.class);
-                            arr.add(cocktail);
-                        }
-                        listener.onCocktailsFetched(arr);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        listener.onFetchFailed(e);
-                    }
-                });
-    }
-
-    public void readFromCollections(OnCocktailsFetchedListener listener) {
-        ArrayList<Cocktail> arr = new ArrayList<Cocktail>();
-
-        userRef.collection("userF")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Cocktail cocktail = documentSnapshot.toObject(Cocktail.class);
-                            arr.add(cocktail);
-                        }
-                        listener.onCocktailsFetched(arr);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        listener.onFetchFailed(e);
-                    }
-                });
     }
 
 
