@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.example.cocktailbar.models.Person;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,27 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         FirebaseApp.initializeApp(this);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
-
-
         mAuth = FirebaseAuth.getInstance();
         StorageReference storageRef = storage.getReference();
-
-
-        //mAuth.signOut();
         FirebaseUser user=mAuth.getCurrentUser();
-
-        //if the user already login
-        /*
-        if(user!=null){
-            Toast.makeText(this,"log in",Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(this,MainActivity2.class);
-            startActivity(intent);
-        }
-
-         */
-
 
 
     }
@@ -103,12 +89,19 @@ public  void funcRegister(EditText emailText, EditText passText,EditText firstNa
                         Toast.makeText(view.getContext(), "new account created",Toast.LENGTH_LONG).show();
                         Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_mainActivity2);
 
+                    }else   if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(view.getContext(), "The email address is already in use by another account.", Toast.LENGTH_LONG).show();
+                    } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                        Toast.makeText(view.getContext(), "The email address is not valid.\n" +
+                                "or the pass is not strong enough", Toast.LENGTH_LONG).show();
+                    } else if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+                        Toast.makeText(view.getContext(), "The password is not strong enough.", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(view.getContext(), "reg not ok",Toast.LENGTH_LONG).show();
-
-
-
+                        Toast.makeText(view.getContext(), "Registration failed.", Toast.LENGTH_LONG).show();
                     }
+
+
+
                 }
             });
 
