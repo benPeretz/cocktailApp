@@ -107,7 +107,7 @@ public class myCocktailsFragment extends Fragment {
                         ingredientArr,measureArr,String.valueOf(drinkId));
 
 
-                Toast.makeText(requireContext(),"Added to favorit",Toast.LENGTH_LONG).show();
+                Toast.makeText(requireContext(),"Added to favorite",Toast.LENGTH_LONG).show();
                 mainActivity2.writeToCollectionMyCocktail(cocktail,view);
                 homeFragment homeFragment=new homeFragment();
                 mainActivity2.replaceFragment(homeFragment);

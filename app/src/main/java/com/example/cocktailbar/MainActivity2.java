@@ -295,6 +295,7 @@ public boolean currentUser(){
                                 if (person.cocktails.stream().anyMatch(c -> c.getIdDrink().equals(cocktail.getIdDrink()))) {
                                     Toast.makeText(getApplicationContext(),"Remove your own cocktail",Toast.LENGTH_LONG).show();
                                     person.cocktails.removeIf(c -> c.getIdDrink().equals(cocktail.getIdDrink()));
+                                    //view.findViewById(R.id.floatingActionButton2)
                                 }
                                 else{
                                     Toast.makeText(getApplicationContext(),"Added to favorite",Toast.LENGTH_LONG).show();

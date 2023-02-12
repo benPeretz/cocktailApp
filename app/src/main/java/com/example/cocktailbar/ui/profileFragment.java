@@ -28,10 +28,13 @@ public class profileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
         mainActivity2 = (MainActivity2) getActivity();
+        mAuth = FirebaseAuth.getInstance();
+
         Button profileBtn = view.findViewById(R.id.profile_btn_profile);
         Button logoutBtn=view.findViewById(R.id.log_out_btn_profile);
-        mAuth = FirebaseAuth.getInstance();
+
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String email = user.getEmail();

@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.cocktailbar.registerFragment"
+        android:name="com.example.cocktailbar.ui.registerFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action

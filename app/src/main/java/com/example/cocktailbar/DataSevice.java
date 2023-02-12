@@ -29,29 +29,28 @@ public class DataSevice {
 
 
         try {//if url is not good
-            url=new URL(sURL);
-        } catch (MalformedURLException e) {
+            url=new URL(sURL);//initializing the URL object with the URL string
+        } catch (MalformedURLException e) {//catching the exception if the URL is not properly formatted
             e.printStackTrace();
         }
 
         try {// io acception like 404
 
-            HttpURLConnection request=(HttpURLConnection) url.openConnection();
-            request.connect();
+            HttpURLConnection request=(HttpURLConnection) url.openConnection(); //creating an HTTP URL connection to the URL
+            request.connect();//connecting to the URL
 
-            JsonParser js = new JsonParser();
-            JsonElement root = js.parse(new InputStreamReader((InputStream) request.getContent()));//get from json String element
-            JsonElement rootobj =root.getAsJsonObject();
 
-            JsonObject obj=rootobj.getAsJsonObject();
+            JsonParser js = new JsonParser(); //creating a JsonParser object
+            JsonElement root = js.parse(new InputStreamReader((InputStream) request.getContent())); //parsing the data received from the API in Json format
+            JsonElement rootobj =root.getAsJsonObject();//getting the Json data as a Json object
+            JsonObject obj=rootobj.getAsJsonObject();//casting the root Json element to a Json object
 
-            JsonElement drinks =obj.get("drinks");
+            JsonElement drinks =obj.get("drinks"); //getting the "drinks" element from the Json object
+
             if(drinks!=null){
 
+                //if its not null convert in a json array
                 JsonArray drinksArray=drinks.getAsJsonArray();
-
-
-
 
 
                 String strIngredient="strIngredient";
@@ -59,9 +58,9 @@ public class DataSevice {
                 int temp=1;
 
 
-                for (JsonElement j:drinksArray){
-                    JsonObject drink=j.getAsJsonObject();
-                    JsonElement strDrink = drink.get("strDrink");
+                for (JsonElement j:drinksArray){//looping through each element in the drinks array
+                    JsonObject drink=j.getAsJsonObject();//casting the current Json element to a Json object
+                    JsonElement strDrink = drink.get("strDrink");//getting the "strDrink" element from the Json object
                     JsonElement strCategory = drink.get("strCategory");
                     JsonElement strDrinkThumb =drink.get("strDrinkThumb");
                     JsonElement idDrink =drink.get("idDrink");
@@ -98,9 +97,6 @@ public class DataSevice {
                     }
 
 
-                    //ArrayList<String>a=ingredientArr;
-                    //int size =ingredientArr.size();
-
                     cocktailDetail=new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl.toString(),strAlcoholic.toString()
                             ,strGlass.toString(),strInstructions.toString(),ingredientArr,measureArr,idDrink.toString());
                     arrCocktail.add(cocktailDetail);
@@ -116,103 +112,5 @@ public class DataSevice {
         return arrCocktail;
 
     }
-    /*
-    public Cocktail getCocktailDetail(String strId){
 
-        String sURL="https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+strId;
-        URL url=null;
-
-
-        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-
-        try {//if url is not good
-            url=new URL(sURL);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        try {// io acception like 404
-
-            HttpURLConnection request=(HttpURLConnection) url.openConnection();
-            request.connect();
-
-            JsonParser js = new JsonParser();
-            JsonElement root = js.parse(new InputStreamReader((InputStream) request.getContent()));//get from json String element
-            JsonElement rootobj =root.getAsJsonObject();
-
-            JsonObject obj=rootobj.getAsJsonObject();
-
-            JsonElement drinks =obj.get("drinks");
-            if(drinks!=null){
-
-                JsonArray drinksArray=drinks.getAsJsonArray();
-                //JsonElement d=drinksArray.get(1).getAsJsonObject().get("strDrink");
-
-                ArrayList<String>ingredientArr=new ArrayList<String>();
-                ArrayList<String>measureArr=new ArrayList<String>();
-
-                String strIngredient="strIngredient";
-                String strMeasure="strMeasure";
-                int temp=1;
-
-                strMeasure=strMeasure+String.valueOf(temp);
-                strIngredient=strIngredient+String.valueOf(temp);
-
-                for (JsonElement j:drinksArray){
-                    JsonObject drink=j.getAsJsonObject();
-                    JsonElement strDrink = drink.get("strDrink");
-                    JsonElement strCategory = drink.get("strCategory");
-                    JsonElement strDrinkThumb =drink.get("strDrinkThumb");
-                    JsonElement idDrink =drink.get("idDrink");
-                    JsonElement strGlass =drink.get("strGlass");
-                    JsonElement strAlcoholic =drink.get("strAlcoholic");
-                    JsonElement strInstructions =drink.get("strInstructions");
-                    String strDrinkThumbUrl=strDrinkThumb.getAsString();
-
-                    while(temp<12){
-
-                        JsonElement Ingredient =drink.get(strIngredient);
-                        JsonElement Measure =drink.get(strMeasure);
-                        String STRing=Ingredient.toString();
-
-                        if(STRing.equals("null")){
-                            break;
-                        }
-                        ingredientArr.add(Ingredient.toString());
-                        measureArr.add(Measure.toString());
-                        temp++;
-                        strMeasure=strMeasure.substring(0,strMeasure.length()-1);
-                        strIngredient=strIngredient.substring(0,strIngredient.length()-1);
-
-                        strMeasure=strMeasure+String.valueOf(temp);
-                        strIngredient=strIngredient+String.valueOf(temp);
-
-
-                    }
-
-
-                    ArrayList<String>a=ingredientArr;
-                    int size =ingredientArr.size();
-
-                    cocktailDetail=new Cocktail(strDrink.toString(),strCategory.toString(),strDrinkThumbUrl.toString(),strAlcoholic.toString()
-                    ,strGlass.toString(),strInstructions.toString(),ingredientArr,measureArr,idDrink.toString());
-                }
-            }
-
-
-
-
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return cocktailDetail;
-    }
-
-     */
 }

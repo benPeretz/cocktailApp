@@ -64,7 +64,7 @@ public class cocktailDetailFragment extends Fragment {
         tv_Glass_result.setText(cocktail.getStrGlass().replace("\"",""));
         tv_name.setText(cocktail.getStrDrink().replace("\"",""));
         tv_instructions_result.setText(cocktail.getStrInstructions().replace("\"",""));
-        Glide.with(this).load(cocktail.getPhoto()).error(R.drawable.ic_launcher_background).into(iv_image);
+        Glide.with(this).load(cocktail.getPhoto()).error(R.drawable.def_pic).into(iv_image);
 
         ArrayList<String>ingredient=cocktail.getStrIngredient();
         ArrayList<String>measure=cocktail.getStrMeasure();
@@ -141,6 +141,8 @@ public class cocktailDetailFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
+
+
 
                 //sending the request to the func ,if it's not in favorite ->add ,else->remove
                 mainActivity2.writeToCollection(cocktail,view);
